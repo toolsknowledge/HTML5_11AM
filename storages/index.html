@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>HTML Storages</title>
+        <title>Storages in HTML5</title>
     </head>
     <body>
         <fieldset>
@@ -15,24 +15,22 @@
                 <label>Password</label>
                 <input type="password" id="upwd">
             </div>
+            <br><br>
             <div>
-                <button onclick="myFun()">Login</button>
+                <button onclick="myFun()">Click Me</button>
             </div>
         </fieldset>
     </body>
     <script>
         function myFun(){
-            obj = {"uname" : document.getElementById("uname").value,
-                   "upwd" : document.getElementById("upwd").value};
+            obj = { "uname" : document.getElementById("uname").value,
+                    "upwd" : document.getElementById("upwd").value };
             window.localStorage.setItem("login_details",JSON.stringify(obj));
 
-            console.log( JSON.parse(window.localStorage.getItem("login_details")).uname,
-                         JSON.parse(window.localStorage.getItem("login_details")).upwd );
-
-            //window.localStorage.clear();
+            console.log( JSON.parse(window.localStorage.getItem("login_details")) );
 
             window.localStorage.removeItem("login_details");
 
-        };
+        }
     </script>
 </html>
