@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <script>
     if(window.Worker){
         let addThread = new Worker("add.js");
@@ -6,21 +5,23 @@
         let mulThread = new Worker("mul.js");
         let divThread = new Worker("div.js");
 
-        addThread.postMessage({"num1":10,"num2":10});
-            addThread.onmessage = function(e){
-            subThread.postMessage({num1:e.data,num2:e.data});
+        addThread.postMessage({num1:10,num2:20});
+        addThread.onmessage = function(e){
+            subThread.postMessage({num1:e.data,num2:10});
             subThread.onmessage = function(e){
-                mulThread.postMessage({num1:100,num2:100});
+                mulThread.postMessage({num1:e.data});
                 mulThread.onmessage = function(e){
-                    divThread.postMessage({"num1":e.data,num2:e.data})
+                    divThread.postMessage({num1:e.data});
                     divThread.onmessage = function(e){
-                        console.log( e.data );
+                        console.log(e.data);
                     }
                 }
             }
         }
 
+
+
     }else{
-        console.log("web worker not supported by browser");
+        console.log("web worker not supported");
     }
 </script>
